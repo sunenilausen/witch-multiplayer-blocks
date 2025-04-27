@@ -38,6 +38,9 @@ mp.onButtonEvent(mp.MultiplayerButton.A, ControllerButtonEvent.Pressed, function
         skud.setVelocity(fe.vx, fe.vy)
     }
 })
+mp.onScore(10, function (player2) {
+    mp.gameOverPlayerWin(player2)
+})
 let skud: Sprite = null
 let fe: Sprite = null
 let heks: Sprite = null
