@@ -12,11 +12,11 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player2, function (sprite, o
 })
 mp.onButtonEvent(mp.MultiplayerButton.A, ControllerButtonEvent.Pressed, function (player2) {
     if (mp.isButtonPressed(mp.playerSelector(mp.PlayerNumber.One), mp.MultiplayerButton.A)) {
-        skud = sprites.create(sprites.projectile.explosion1, SpriteKind.Projectile)
-        skud.setPosition(heks.x, heks.y)
-        skud.setVelocity(heks.vx, heks.vy)
+        shot = sprites.create(sprites.projectile.explosion1, SpriteKind.Projectile)
+        shot.setPosition(playerRed.x, playerRed.y)
+        shot.setVelocity(playerRed.vx, playerRed.vy)
     } else if (mp.isButtonPressed(mp.playerSelector(mp.PlayerNumber.Two), mp.MultiplayerButton.A)) {
-        skud = sprites.create(img`
+        shot = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -34,20 +34,20 @@ mp.onButtonEvent(mp.MultiplayerButton.A, ControllerButtonEvent.Pressed, function
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Projectile2)
-        skud.setPosition(fe.x, fe.y)
-        skud.setVelocity(fe.vx, fe.vy)
+        shot.setPosition(playerBlue.x, playerBlue.y)
+        shot.setVelocity(playerBlue.vx, playerBlue.vy)
     }
 })
 mp.onScore(10, function (player2) {
     mp.gameOverPlayerWin(player2)
 })
-let skud: Sprite = null
-let fe: Sprite = null
-let heks: Sprite = null
-heks = sprites.create(sprites.swamp.witchBack0, SpriteKind.Player)
-fe = sprites.create(sprites.castle.princess2Back, SpriteKind.Player2)
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), heks)
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), fe)
+let shot: Sprite = null
+let playerBlue: Sprite = null
+let playerRed: Sprite = null
+playerRed = sprites.create(sprites.swamp.witchBack0, SpriteKind.Player)
+playerBlue = sprites.create(sprites.castle.princess2Back, SpriteKind.Player2)
+mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), playerRed)
+mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), playerBlue)
 mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 100, 100)
 mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 100, 100)
 mp.setPlayerState(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score, 0)
