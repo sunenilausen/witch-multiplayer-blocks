@@ -6,6 +6,9 @@ sprites.onOverlap(SpriteKind.Projectile2, SpriteKind.Player, function (sprite, o
     mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Two), MultiplayerState.score, 1)
     sprites.destroy(sprite, effects.fountain, 100)
 })
+mp.onScore(10, function (player2) {
+    mp.gameOverPlayerWin(player2)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player2, function (sprite, otherSprite) {
     mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score, 1)
     sprites.destroy(sprite, effects.fire, 100)
@@ -38,14 +41,11 @@ mp.onButtonEvent(mp.MultiplayerButton.A, ControllerButtonEvent.Pressed, function
         shot.setVelocity(playerBlue.vx, playerBlue.vy)
     }
 })
-mp.onScore(10, function (player2) {
-    mp.gameOverPlayerWin(player2)
-})
 let shot: Sprite = null
 let playerBlue: Sprite = null
 let playerRed: Sprite = null
-playerRed = sprites.create(sprites.swamp.witchBack0, SpriteKind.Player)
-playerBlue = sprites.create(sprites.castle.princess2Back, SpriteKind.Player2)
+playerRed = sprites.create(sprites.swamp.witchForward0, SpriteKind.Player)
+playerBlue = sprites.create(sprites.castle.princess2Front, SpriteKind.Player2)
 mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), playerRed)
 mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), playerBlue)
 mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 100, 100)
